@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  postgresql:
+    image: postgres:16.3
+    container_name: postgresql
+    environment:
+      POSTGRES_PASSWORD: @Lampupijar77
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+      - ./docker/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql\
+  mongodb:
+    image: mongo:7.0.5
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_INTIDB_DATABASE: product-service
+    volumes:
+      - ./data:/data/db
